@@ -1,6 +1,8 @@
 # WebRTC
 An easy way to use device camera.
 
+[demo](https://ziard.github.io/WebRTC/index.html)
+
 ## Usage
 ```html
 <div id="WebRTC"></div>
