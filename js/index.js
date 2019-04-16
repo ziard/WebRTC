@@ -1,8 +1,9 @@
 /*
- *  Project:
- *  Description:
- *  Author:ed108804(EDAH)
- *  License:
+ *  Project: WebRTC
+ *  Description: Easy use WebRTC
+ *  Author: ed108804(EDAH)
+ *  License: MIT
+ *  Version: 1.0
  */
 
 // the semi-colon before function invocation is a safety net against concatenated
@@ -24,6 +25,7 @@
 	// default options
 	const defaults = {
 		resolution: null,
+		fixWidth: null,
 		front: false,
 		audio: false,
 	}
@@ -79,60 +81,8 @@
 		}
 	}
 
-	const viewTemplate = function (element, options) {
-		console.log(element);
-		element.html('<video id="video" autoplay playsinline></video>');
-	}
-
+	const viewTemplate = '<video id="video" autoplay playsinline></video>';
 	const getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
-
-	const streamStart = function (options) {
-		const constraints = {
-			video: {
-				facingMode: (options.front ? "user" : "environment")
-			},
-			audio: options.audio
-		}
-		if (options.resolution) {
-			constraints.video.width = resolutionData[options.resolution].width;
-			constraints.video.height = resolutionData[options.resolution].height;
-		}
-		console.log(constraints);
-		if (getUserMedia) {
-			navigator.mediaDevices.getUserMedia(constraints).then(successCallback).catch(errorCallback);
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	const streamStop = function () {
-		if (window.stream) {
-			window.stream.getTracks().forEach(function (track) {
-				track.stop();
-			});
-		}
-	}
-
-	const streamSwitch = function (options) {
-		streamStop();
-		options.front = !options.front;
-		streamStart(options);
-	}
-
-	const streamPause = function () {
-		// const video = document.getElementById('video');
-		video.pause();
-	}
-
-	const streamResume = function () {
-		// const video = document.getElementById('video');
-		video.play();
-	}
-
-	const StreamSnapshot = function () {
-
-	}
 
 	const errorCallback = function (error) {
 		console.error('navigator.MediaDevices.getUserMedia error: ', error.message, error.name);
@@ -170,33 +120,58 @@
 
 	Plugin.prototype = {
 		init: function (options) {
-			console.log(2);
-			// extend options ( http://api.jquery.com/jQuery.extend/ )
 			$.extend(this.options, options);
+			console.log(2);
 
 			/*
 			 * Place initialization logic here
 			 */
-			viewTemplate(this.element, this.options);
+			this.element.html(viewTemplate);
+			if (options.fixWidth) {
+				this.element.css('width', options.fixWidth);
+				this.element.find('video').each(function () {
+					this.style.setProperty('width', '100%', 'important');
+				});
+			}
 		},
 		start: function () {
-			streamStart(this.options);
+			const constraints = {
+				video: {
+					facingMode: (this.options.front ? "user" : "environment")
+				},
+				audio: this.options.audio
+			}
+			if (this.options.resolution) {
+				constraints.video.width = resolutionData[this.options.resolution].width;
+				constraints.video.height = resolutionData[this.options.resolution].height;
+			}
+			console.log(constraints);
+			if (getUserMedia) {
+				navigator.mediaDevices.getUserMedia(constraints).then(successCallback).catch(errorCallback);
+				return true;
+			} else {
+				return false;
+			}
 		},
 		stop: function () {
-			streamStop();
+			if (window.stream) {
+				window.stream.getTracks().forEach(function (track) {
+					track.stop();
+				});
+			}
 		},
 		switch: function () {
-			streamSwitch(this.options);
+			this.stop();
+			this.options.front = !this.options.front;
+			this.start();
 		},
 		pause: function () {
 			this.element.find('video').get(0).pause();
-			// streamPause();
 		},
 		resume: function () {
 			this.element.find('video').get(0).play();
-			// streamResume();
 		},
-		snapshot: function (canvas, width, height) {
+		capture: function (canvas, width, height) {
 			const video = this.element.find('video').get(0);
 			canvas.width = width ? width : video.videoWidth;
 			canvas.height = height ? height : video.videoHeight;
@@ -215,7 +190,10 @@
 					}]
 				});
 			}
-		}
+		},
+		zoomBar: function () {
+
+		},
 	}
 
 	/*
