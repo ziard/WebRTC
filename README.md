@@ -1,4 +1,5 @@
 # WebRTC
+An easy way to use device camera.
 
 ## Usage
 ```html
