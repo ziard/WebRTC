@@ -15,15 +15,13 @@
   <input type="button" value="zoom" id="btn7">
   <div id="WebRTC"></div>
   <canvas id="canvas"></canvas>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+  <script src='https://code.jquery.com/jquery-1.12.4.min.js'></script>
   <script src="js/WebRTC.js"></script>
   <script>
-    console.log(4);
     var WebRTC = $('#WebRTC').WebRTC({
       resolution: "HD",
       fixWidth: 300,
     });
-    console.log(WebRTC);
 
     $('#btn1').click(function () {
       WebRTC.WebRTC('start');

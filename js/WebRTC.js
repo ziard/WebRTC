@@ -89,9 +89,6 @@
 	}
 
 	const successCallback = function (stream) {
-		console.log(stream);
-		console.log('success');
-		// console.log(video);
 		const video = document.getElementById('video');
 		window.stream = stream;
 		if (navigator.mediaDevices) {
@@ -105,8 +102,6 @@
 				video.src = stream;
 			}
 		}
-		console.log(video);
-		console.log('success out');
 	}
 
 	// The actual plugin constructor
@@ -115,14 +110,11 @@
 		 * Plugin instantiation
 		 */
 		this.options = $.extend({}, defaults);
-		console.log(1);
 	}
 
 	Plugin.prototype = {
 		init: function (options) {
 			$.extend(this.options, options);
-			console.log(2);
-
 			/*
 			 * Place initialization logic here
 			 */
@@ -145,7 +137,6 @@
 				constraints.video.width = resolutionData[this.options.resolution].width;
 				constraints.video.height = resolutionData[this.options.resolution].height;
 			}
-			console.log(constraints);
 			if (getUserMedia) {
 				navigator.mediaDevices.getUserMedia(constraints).then(successCallback).catch(errorCallback);
 				return true;
@@ -202,7 +193,6 @@
 	 * e.g. $(element).pluginName('functionName', arg1, arg2, ...)
 	 */
 	$.fn[pluginName] = function (arg) {
-		console.log(5);
 		var args, instance;
 
 		// only allow the plugin to be instantiated once
