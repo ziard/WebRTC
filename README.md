@@ -1,9 +1,17 @@
 # WebRTC
 An easy way to use device camera.
 
+[demo](https://ziard.github.io/WebRTC/index.html)
+
 ## Usage
+Create a div container
 ```html
 <div id="WebRTC"></div>
+```
+
+Include jQuery-1.12.4 or later:
+```html
+<script src='https://code.jquery.com/jquery-1.12.4.min.js'></script>
 ```
 
 ### Options
@@ -67,6 +75,12 @@ WebRTC.WebRTC('zoom', 2);
 //comming soon
 
 ```
+## Browsers support
+
+|| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](#)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](#)</br>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](#)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](#)</br>Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari-ios/safari-ios_48x48.png" alt="iOS Safari" width="24px" height="24px" />](#)</br>iOS Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png" alt="Opera" width="24px" height="24px" />](#)</br>Opera |
+| --------- | --------- | --------- | --------- | --------- | --------- | --------- |
+| Basic| 47| Edge| 33| 11| 11| 30
+| Zoom| 66| Edge 12| No| ?| ?| 53
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
