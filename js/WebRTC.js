@@ -127,21 +127,47 @@
 			}
 		},
 		start: function () {
+			const $this = this;
 			const constraints = {
 				video: {
-					facingMode: (this.options.front ? "user" : "environment")
+					facingMode: ($this.options.front ? "user" : "environment")
 				},
-				audio: this.options.audio
+				audio: $this.options.audio
 			}
-			if (this.options.resolution) {
-				constraints.video.width = resolutionData[this.options.resolution].width;
-				constraints.video.height = resolutionData[this.options.resolution].height;
+			if ($this.options.resolution) {
+				constraints.video.width = resolutionData[$this.options.resolution].width;
+				constraints.video.height = resolutionData[$this.options.resolution].height;
 			}
-			if (getUserMedia) {
-				navigator.mediaDevices.getUserMedia(constraints).then(successCallback).catch(errorCallback);
+
+			if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+				navigator.mediaDevices.enumerateDevices().then(function (devices) {
+					devices = devices.filter(function (devices) {
+						return devices.kind === 'videoinput';
+					});
+
+					var videoinput_id = '';
+					devices.forEach(function (device) {
+						if (device.label.toLowerCase().search($this.options.front ? "front" : "back") > -1) {
+							videoinput_id = device.deviceId;
+						}
+					});
+					if (videoinput_id != '') {
+						constraints.video.deviceId = {
+							'exact': videoinput_id
+						};
+						navigator.mediaDevices.getUserMedia(constraints).then(successCallback);
+					} else {
+						navigator.mediaDevices.getUserMedia(constraints).then(successCallback);
+					}
+				});
 				return true;
 			} else {
-				return false;
+				if (getUserMedia) {
+					navigator.mediaDevices.getUserMedia(constraints).then(successCallback).catch(errorCallback);
+					return true;
+				} else {
+					return false;
+				}
 			}
 		},
 		stop: function () {
