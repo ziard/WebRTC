@@ -61,11 +61,9 @@ WebRTC.WebRTC('pause');
 WebRTC.WebRTC('resume');
 //resume camera
 
-WebRTC.WebRTC('capture', canvas);
+WebRTC.WebRTC('capture', '#canvas');
 //capture picture to canvas element
-//var canvas = $('#canvas').get(0);
-//or
-//var canvas = document.getElementById('canvas');
+//<canvas id="canvas"></canvas>
 
 WebRTC.WebRTC('zoom', 2);
 //zoom camera

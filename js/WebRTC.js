@@ -188,11 +188,14 @@
 		resume: function () {
 			this.element.find('video').get(0).play();
 		},
-		capture: function (canvas, width, height) {
+		capture: function (selector, width, height) {
+			const canvas = $(selector);
 			const video = this.element.find('video').get(0);
-			canvas.width = width ? width : video.videoWidth;
-			canvas.height = height ? height : video.videoHeight;
-			canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+			canvas.each(function(){
+				this.width = width ? width : video.videoWidth;
+				this.height = height ? height : video.videoHeight;
+				this.getContext('2d').drawImage(video, 0, 0, this.width, this.height);
+			});
 		},
 		zoom: function (zoomRate) {
 			if (window.stream) {

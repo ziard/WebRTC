@@ -39,9 +39,7 @@
       WebRTC.WebRTC('resume');
     });
     $('#btn6').click(function () {
-      var canvas = $('#canvas').get(0);
-      // var canvas = document.getElementById('canvas');
-      WebRTC.WebRTC('capture', canvas);
+      WebRTC.WebRTC('capture', '#canvas');
     });
     $('#btn7').click(function () {
       WebRTC.WebRTC('zoom', 2);
