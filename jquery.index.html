@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+</head>
+
+<body>
+  <input type="button" value="start" id="btn1">
+  <input type="button" value="stop" id="btn2">
+  <input type="button" value="switch" id="btn3">
+  <input type="button" value="pause" id="btn4">
+  <input type="button" value="resume" id="btn5">
+  <input type="button" value="capture" id="btn6">
+  <input type="button" value="zoom" id="btn7">
+  <div id="WebRTC"></div>
+  <canvas id="canvas"></canvas>
+  <script src='https://code.jquery.com/jquery-1.12.4.min.js'></script>
+  <script src="js/jquery.WebRTC.js"></script>
+  <script>
+    var WebRTC = $('#WebRTC').WebRTC({
+      resolution: "HD",
+      fixWidth: 300,
+    });
+
+    $('#btn1').click(function () {
+      WebRTC.WebRTC('start');
+    });
+    $('#btn2').click(function () {
+      WebRTC.WebRTC('stop');
+    });
+    $('#btn3').click(function () {
+      WebRTC.WebRTC('switch');
+    });
+    $('#btn4').click(function () {
+      WebRTC.WebRTC('pause');
+    });
+    $('#btn5').click(function () {
+      WebRTC.WebRTC('resume');
+    });
+    $('#btn6').click(function () {
+      WebRTC.WebRTC('capture', '#canvas',{
+        width:800,
+        height:600
+      });
+    });
+    $('#btn7').click(function () {
+      WebRTC.WebRTC('zoom', 2);
+    });
+  </script>
+</body>
+
+</html>
