@@ -15,11 +15,11 @@ Create a div container
 ```javascript
 // init
 <script src="js/WebRTC.js"></script>
-var WebRTC = new WebRTC('#WebRTC');
+var WebRTC = new WebRTC("#WebRTC");
 ```
 #### options
 ```javascript
-var WebRTC = new WebRTC('#WebRTC',{
+var WebRTC = new WebRTC("#WebRTC",{
 	resolution: "HD",
 	//camera resolution
 	//if device not support high resolution will throw excaption
@@ -45,33 +45,33 @@ var WebRTC = new WebRTC('#WebRTC',{
 ```
 #### method
 ```javascript
-WebRTC.WebRTC('start');
+WebRTC.WebRTC("start");
 //open camera
 
-WebRTC.WebRTC('stop');
+WebRTC.WebRTC("stop");
 //stop camera
 
-WebRTC.WebRTC('switch');
+WebRTC.WebRTC("switch");
 //switch resource between rear and front
 
-WebRTC.WebRTC('pause');
+WebRTC.WebRTC("pause");
 //pause camera
 
-WebRTC.WebRTC('resume');
+WebRTC.WebRTC("resume");
 //resume camera
 
-WebRTC.WebRTC('capture', '#canvas',{
+WebRTC.WebRTC("capture", "#canvas",{
 	width:800,
 	height:600
 });
 //capture picture to canvas element
 //<canvas id="canvas"></canvas>
 
-WebRTC.WebRTC('zoom', 2);
+WebRTC.WebRTC("zoom", 2);
 //zoom camera
 //device must support
 
-// WebRTC.WebRTC('zoomBar');
+// WebRTC.WebRTC("zoomBar");
 //comming soon
 ```
 
@@ -81,14 +81,14 @@ WebRTC.WebRTC('zoom', 2);
 #### basic
 ```javascript
 //jquery version 1.12.4 or later
-<script src='https://code.jquery.com/jquery-1.12.4.min.js'></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script src="js/jquery.WebRTC.js"></script>
 var WebRTC = $('#WebRTC').WebRTC();
 ```
 
 #### options
 ```javascript
-var WebRTC = $('#WebRTC').WebRTC({
+var WebRTC = $("#WebRTC").WebRTC({
       resolution: "HD",
       fixWidth: 300,
       front: true,
